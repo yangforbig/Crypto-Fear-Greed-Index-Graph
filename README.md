@@ -23,15 +23,17 @@ This project creates interactive visualizations comparing the Crypto Fear & Gree
 
 Run the `update_graph.py` script to generate the visualizations. The script will create two HTML files:
 
+## Current Fear & Greed Index
+
+<img src="https://alternative.me/crypto/fear-and-greed-index.png" alt="Latest Crypto Fear & Greed Index" />
+
 ### Ethereum Visualization
 ![Ethereum Visualization](interactive_plot_eth.html)
 
 ### Bitcoin Visualization
 ![Bitcoin Visualization](interactive_plot_bitcoin.html)
 
-## Current Fear & Greed Index
 
-<img src="https://alternative.me/crypto/fear-and-greed-index.png" alt="Latest Crypto Fear & Greed Index" />
 
 ## Note
 
