@@ -31,7 +31,7 @@ Run the `update_graph.py` script to generate the visualizations. The script will
 ![Bitcoin Visualization](interactive_plot_bitcoin.html)
 
 ### Ethereum Visualization
-![Ethereum Visualization](interactive_plot_eth.html)
+![Ethereum Visualization]((https://yangforbig.github.io/<repository-name>/interactive_plot_eth.html))
 
 
 
