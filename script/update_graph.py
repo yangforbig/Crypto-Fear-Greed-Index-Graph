@@ -1,6 +1,7 @@
 import pandas as pd
 import requests
 import plotly.graph_objects as go
+import plotly.io as pio
 from plotly.subplots import make_subplots
 from datetime import datetime, timedelta,date
 
@@ -122,3 +123,6 @@ bitcoin_fg_fig = plot_data_with_fear_greed_alerts(merged_bitcoin_fg_df, "BTC")
 
 eth_fg_fig.write_html("interactive_plot_eth.html")
 bitcoin_fg_fig.write_html("interactive_plot_bitcoin.html")
+
+pio.write_image(eth_fg_fig, "interactive_plot_eth.png")
+pio.write_image(bitcoin_fg_fig, "interactive_plot_bitcoin.png")
