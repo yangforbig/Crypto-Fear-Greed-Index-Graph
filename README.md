@@ -28,9 +28,11 @@ Run the `update_graph.py` script to generate the visualizations. The script will
 <img src="https://alternative.me/crypto/fear-and-greed-index.png" alt="Latest Crypto Fear & Greed Index" />
 
 ### Bitcoin Visualization
+![Bitcoin Visualization](btc_visualization.png)
 [Bitcoin Visualization](interactive_plot_bitcoin.html)
 
 ### Ethereum Visualization
+![Ethereum Visualization](eth_visualization.png)
 [Ethereum Visualization](https://yangforbig.github.io/Crypto-Fear-Greed-Index-Graph/interactive_plot_eth.html)
 
 
