@@ -38,6 +38,11 @@ Run the `update_graph.py` script to generate the visualizations. The script will
 
 
 
-## Note
+## What's next ?
 
-This project requires a valid CoinAPI key to fetch cryptocurrency price data.
+<img src="https://i0.wp.com/www.qropsspecialists.com/wp-content/uploads/2022/06/warren-buffett-greedy-fearful.jpg?fit=1080%2C380&ssl=1">
+
+
+
+
+
