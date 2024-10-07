@@ -43,12 +43,16 @@ Why I am interested into Fear and Greed ? Because the crypto market behaviour is
 <img src="https://i0.wp.com/www.qropsspecialists.com/wp-content/uploads/2022/06/warren-buffett-greedy-fearful.jpg?fit=1080%2C380&ssl=1">
 
 
-What if we just invested $1000 every time the market sentiment is Extreme Fear for the past 4 years ? The result would be:
+What if we just invested $1000 every time the market sentiment is Extreme Fear and never sell for the past 4 years ? The result would be: <br>
 
-Number of trades: 290
-Bought: 12.363675 BTC
-final_btc_price: $62056.42
-Total investment: $337500.00
-Final portfolio value: $767245.44
+- Number of trades: 290
+- Bought: 12.363675 BTC
+- final_btc_price: $62056.42 as of 2024-10-06
+- Total investment: $337500.00
+- Final portfolio value: $767245.44
 - **Profit: $429,745.44** 🟢
 - **Annualized Return: 22.81%** 🟢
+
+This is a phenomenal return! Remember for the past 4 years, the crypto space has been through multiple bull and bear runs and the final return is till more than **20%**!
+
+If you are interested into this simple strategy and want to see how the trades are made, feel free to run /script/stream_data.ipynb step by step to see the strategy details.
