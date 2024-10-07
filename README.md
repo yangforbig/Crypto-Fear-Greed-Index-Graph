@@ -46,11 +46,11 @@ Why I am interested into Fear and Greed ? Because the crypto market behaviour is
 What if we just invested $1000 every time the market sentiment is Extreme Fear and never sell for the past 4 years ? The result would be: <br>
 
 - Number of trades: 290
-- Bought: 12.363675 BTC
-- final_btc_price: $62056.42 as of 2024-10-06
-- Total investment: $337500.00
-- Final portfolio value: $767245.44
-- **Profit: $429,745.44** 🟢
+- Bought: 10.649999 BTC
+- final_btc_price: $62,056.42 as of 2024-10-06
+- Total investment: $290,000.00
+- Final portfolio value: $660,900.83
+- **Profit: $370,900.83** 🟢
 - **Annualized Return: 22.81%** 🟢
 
 This is a phenomenal return! Remember for the past 4 years, the crypto space has been through multiple bull and bear runs and the final return is till more than **20%**!
