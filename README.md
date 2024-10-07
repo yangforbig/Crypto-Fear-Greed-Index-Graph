@@ -36,13 +36,20 @@ Run the `update_graph.py` script to generate the visualizations. The script will
 [View Interactive Ethereum Visualization](https://yangforbig.github.io/Crypto-Fear-Greed-Index-Graph/interactive_plot_eth.html)
 
 
-## What's next ?
+## Million Dollar Strategy ?
 
 Why I am interested into Fear and Greed ? Because the crypto market behaviour is very emotional. People tend to get greedy when the market is rising which results in FOMO (Fear of missing out). Also, people often sell their coins in irrational reaction of seeing red numbers. As Warren Buffet once said:
 
 <img src="https://i0.wp.com/www.qropsspecialists.com/wp-content/uploads/2022/06/warren-buffett-greedy-fearful.jpg?fit=1080%2C380&ssl=1">
 
 
+What if we just invested $1000 every time the market sentiment is Extreme Fear for the past 4 years ? The result would be:
 
-
+Number of trades: 290
+Bought: 12.363675 BTC
+final_btc_price: $62056.42
+Total investment: $337500.00
+Final portfolio value: $767245.44
+Profit: ==$429745.44==
+Annualized Return: ==22.81%==
 
