@@ -1,4 +1,4 @@
-name: Update Graph
+name: Update Visualizations
 
 on:
   schedule:
@@ -19,7 +19,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install pandas requests plotly
     - name: Update graph
-      run: python update_graph.py
+      env:
+        COINAPI_KEY: ${{ secrets.COINAPI_KEY }}
+      run: python script/update_graph.py
     - name: Commit and push if changed
       run: |
         git config --global user.email "action@github.com"

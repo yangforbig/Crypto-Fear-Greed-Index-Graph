@@ -2,8 +2,10 @@ import pandas as pd
 import requests
 import plotly.graph_objects as go
 import plotly.io as pio
+import os
 from plotly.subplots import make_subplots
 from datetime import datetime, timedelta,date
+
 
 def get_fear_greed_data(limit=30):
     url = f"https://api.alternative.me/fng/?limit={limit}&format=json&date_format=us"
@@ -46,7 +48,7 @@ def get_historical_price_data(symbol, start_date, end_date, api_key):
 
 
 # Replace with your actual CoinAPI key
-api_key = "0619394E-1016-4BB5-BADC-558EE8C4878E"
+api_key = os.environ.get("COINAPI_KEY")
 
 def get_eth_price_data(days=30):
     end_date = date.today()
