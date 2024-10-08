@@ -36,7 +36,7 @@ Run the `update_graph.py` script to generate the visualizations. The script will
 [View Interactive Ethereum Visualization](https://yangforbig.github.io/Crypto-Fear-Greed-Index-Graph/interactive_plot_eth.html)
 
 
-## Million Dollars Strategy ?
+## A Simple Million Dollars Trading Strategy ?
 
 Why I am interested into Fear and Greed ? Because the crypto market behaviour is very emotional. People tend to get greedy when the market is rising which results in FOMO (Fear of missing out). Also, people often sell their coins in irrational reaction of seeing red numbers. As Warren Buffet once said:
 
