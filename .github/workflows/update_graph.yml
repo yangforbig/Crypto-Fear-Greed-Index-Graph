@@ -2,7 +2,7 @@ name: Update Visualizations
 
 on:
   schedule:
-    - cron: '0 */3 * * *'  # Runs every 1 hours
+    - cron: '0 */3 * * *'  # Runs every 3 hours
   workflow_dispatch:  # Allows manual trigger
 
 jobs:
@@ -28,4 +28,4 @@ jobs:
         git config --global user.email "action@github.com"
         git config --global user.name "GitHub Action"
         git add -A
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Update graph" && git push)
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Update graph" && git pull && git push)
