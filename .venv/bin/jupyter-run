@@ -1,5 +1,5 @@
 #!/bin/sh
-'''exec' "/Users/noma/OneDrive_UTA/OneDrive - UT Arlington/mac/WorkSpace/FG-ETH/.venv/bin/python" "$0" "$@"
+'''exec' "/Users/noma/OneDrive_UTA/OneDrive - UT Arlington/mac/WorkSpace/FG-CRYPTO/.venv/bin/python" "$0" "$@"
 ' '''
 # -*- coding: utf-8 -*-
 import re

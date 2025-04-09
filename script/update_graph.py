@@ -5,6 +5,7 @@ import plotly.io as pio
 import os
 from plotly.subplots import make_subplots
 from datetime import datetime, timedelta,date
+import numpy as np
 
 
 def get_fear_greed_data(limit=30):
@@ -139,3 +140,43 @@ bitcoin_fg_fig.write_html("interactive_plot_bitcoin.html")
 
 pio.write_image(eth_fg_fig, "interactive_plot_eth.png")
 pio.write_image(bitcoin_fg_fig, "interactive_plot_bitcoin.png")
+
+def create_pivot_table_with_buckets(df, column_names, bins):
+    """
+    Creates a pivot table with specified buckets for given columns.
+    
+    Parameters:
+    df (pd.DataFrame): DataFrame containing the data
+    column_names (list): List of column names to create buckets for
+    bins (list): List of bin edges for bucketing the data
+    
+    Returns:
+    pd.DataFrame: Pivot table with counts and percentages
+    """
+    # Initialize empty DataFrame for pivot table
+    pivot_table = pd.DataFrame()
+
+    for column in column_names:
+        # Create bucket column
+        df[f'{column}_bucket'] = pd.cut(df[column], bins=bins, include_lowest=True)
+
+        # Count occurrences in each bucket
+        bucket_counts = df.groupby(f'{column}_bucket').size().reset_index(name=f'{column}_count')
+
+        # Calculate overall percentages
+        total = bucket_counts[f'{column}_count'].sum()
+        bucket_counts[f'{column}_percentage'] = (bucket_counts[f'{column}_count'] / total * 100).round(2)
+
+        # Merge into pivot table
+        if pivot_table.empty:
+            pivot_table = bucket_counts
+        else:
+            pivot_table = pd.merge(
+                pivot_table, 
+                bucket_counts, 
+                on=f'{column}_bucket', 
+                how='outer'
+            )
+
+    num_days = len(df)
+    return pivot_table, num_days
