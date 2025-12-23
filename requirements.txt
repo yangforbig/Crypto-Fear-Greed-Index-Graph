@@ -1,3 +1,18 @@
-pandas
-requests
-plotly
+# Core dependencies
+pandas>=2.0.0
+requests>=2.31.0
+plotly>=5.18.0
+
+# Dash framework
+dash>=2.14.0
+dash-bootstrap-components>=1.5.0
+
+# Database
+sqlalchemy>=2.0.0
+psycopg2-binary>=2.9.9
+
+# Data sources
+yfinance>=0.2.32
+
+# Utilities
+numpy>=1.24.0
