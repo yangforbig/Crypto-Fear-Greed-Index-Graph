@@ -15,7 +15,7 @@ AVAILABLE_YEARS = [
 ]
 
 def create_filters():
-    """Create filter dropdowns for ticker and year."""
+    """Create filter dropdowns for ticker and year with quick-select buttons."""
     return dbc.Row([
         dbc.Col([
             html.Label("Ticker:", className="fw-bold"),
@@ -26,22 +26,31 @@ def create_filters():
                 clearable=False,
                 className="mb-2"
             )
-        ], width=3),
+        ], width=2),
         dbc.Col([
             html.Label("Year(s):", className="fw-bold"),
-            dcc.Dropdown(
+            dcc.Checklist(
                 id='year-dropdown',
                 options=AVAILABLE_YEARS,
                 value=[2024],
-                multi=True,
-                clearable=False,
-                className="mb-2"
+                inline=True,
+                className="mb-2",
+                inputStyle={"marginRight": "5px"},
+                labelStyle={"marginRight": "15px", "cursor": "pointer"}
             )
+        ], width=5),
+        dbc.Col([
+            html.Label("Quick Select:", className="fw-bold"),
+            html.Div([
+                dbc.Button("All", id='year-select-all-btn', color="secondary", size="sm", className="me-1"),
+                dbc.Button("None", id='year-select-none-btn', color="secondary", size="sm", className="me-1"),
+                dbc.Button("Last 3", id='year-select-last3-btn', color="secondary", size="sm"),
+            ])
         ], width=3),
         dbc.Col([
             html.Label(" ", className="d-block"),
             dbc.Button(
-                "🔄 Refresh Data",
+                "🔄 Refresh",
                 id='refresh-button',
                 color="primary",
                 className="mt-1"

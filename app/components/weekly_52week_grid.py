@@ -13,6 +13,8 @@ from data.market_sentiment import get_fg_emoji, get_fg_classification
 MONTH_NAMES = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE',
                'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER']
 
+CRYPTO_TICKERS = ['BTC', 'MSTR', 'HOOD']
+
 def create_week_cell(week_data, idx):
     """Create a single week cell for the grid with tooltip."""
     bg_color = get_change_color(week_data['weekly_change'])
@@ -138,8 +140,8 @@ def create_52week_grid(weekly_df, year):
     
     return html.Div([summary] + month_sections)
 
-def create_52week_table(weekly_df, year):
-    """Create table view of 52-week data."""
+def create_52week_table(weekly_df, year, ticker='BTC'):
+    """Create table view of 52-week data with year header."""
     year_df = weekly_df[weekly_df['year'] == year].copy()
     
     if year_df.empty:
@@ -152,23 +154,30 @@ def create_52week_table(weekly_df, year):
     year_df['Fri Close'] = year_df['friday_close'].apply(lambda x: f"${x:,.0f}")
     year_df['Change %'] = year_df['weekly_change'].apply(lambda x: f"{x*100:+.1f}%")
     year_df['Max Excursion'] = year_df['max_excursion'].apply(lambda x: f"{x*100:.1f}%")
-    year_df['F&G Avg'] = year_df['fg_avg'].apply(lambda x: f"{int(x)}" if pd.notna(x) else "N/A")
     
-    display_cols = ['Week', 'Date Range', 'Mon Open', 'Fri Close', 'Change %', 'Max Excursion', 'F&G Avg']
+    # Only include F&G column for crypto tickers
+    show_fg = ticker in CRYPTO_TICKERS
+    if show_fg:
+        year_df['F&G Avg'] = year_df['fg_avg'].apply(lambda x: f"{int(x)}" if pd.notna(x) else "N/A")
+        display_cols = ['Week', 'Date Range', 'Mon Open', 'Fri Close', 'Change %', 'Max Excursion', 'F&G Avg']
+    else:
+        display_cols = ['Week', 'Date Range', 'Mon Open', 'Fri Close', 'Change %', 'Max Excursion']
     
-    return dash_table.DataTable(
-        data=year_df[display_cols].to_dict('records'),
-        columns=[{'name': col, 'id': col} for col in display_cols],
-        style_table={'overflowX': 'auto', 'overflowY': 'auto', 'maxHeight': '600px'},
-        style_cell={'textAlign': 'center', 'padding': '8px', 'fontSize': '12px'},
-        style_header={'backgroundColor': '#f8f9fa', 'fontWeight': 'bold', 'position': 'sticky', 'top': 0},
-        style_data_conditional=[
-            {'if': {'filter_query': '{Change %} contains "+"'}, 'backgroundColor': '#d4edda'},
-            {'if': {'filter_query': '{Change %} contains "-"'}, 'backgroundColor': '#f8d7da'},
-        ],
-        sort_action='native'
-        # Removed page_size to show all rows
-    )
+    return html.Div([
+        html.H4(f"📅 {ticker} - {year} Weekly Data", className="mb-3 text-primary"),
+        dash_table.DataTable(
+            data=year_df[display_cols].to_dict('records'),
+            columns=[{'name': col, 'id': col} for col in display_cols],
+            style_table={'overflowX': 'auto', 'overflowY': 'auto', 'maxHeight': '600px'},
+            style_cell={'textAlign': 'center', 'padding': '8px', 'fontSize': '12px'},
+            style_header={'backgroundColor': '#f8f9fa', 'fontWeight': 'bold', 'position': 'sticky', 'top': 0},
+            style_data_conditional=[
+                {'if': {'filter_query': '{Change %} contains "+"'}, 'backgroundColor': '#d4edda'},
+                {'if': {'filter_query': '{Change %} contains "-"'}, 'backgroundColor': '#f8d7da'},
+            ],
+            sort_action='native'
+        )
+    ])
 
 def create_52week_grid_layout():
     """Create the layout for 52-week grid tab."""

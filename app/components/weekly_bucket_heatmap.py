@@ -24,8 +24,8 @@ BUCKET_ORDER = [
     '(0.2, 0.5]'
 ]
 
-def create_bucket_heatmap(pivot_df, title_prefix="Weekly"):
-    """Create the bucket distribution heatmap."""
+def create_bucket_heatmap(pivot_df, title_prefix="Weekly", ticker=""):
+    """Create the bucket distribution heatmap with ticker in title."""
     count_pivot = pd.pivot_table(
         pivot_df,
         values='count',
@@ -69,8 +69,10 @@ def create_bucket_heatmap(pivot_df, title_prefix="Weekly"):
         hovertemplate='Bucket: %{x}<br>Year: %{y}<br>Count: %{z}<extra></extra>'
     ))
     
+    # Build title with ticker
+    ticker_label = f" - {ticker}" if ticker else ""
     fig.update_layout(
-        title=f'{title_prefix} Price Change Distribution by Year',
+        title=f'{ticker}{ticker_label} {title_prefix} Price Change Distribution',
         xaxis_title='Price Change Bucket',
         yaxis_title='Year',
         height=500,

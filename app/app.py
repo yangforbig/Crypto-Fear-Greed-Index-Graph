@@ -142,10 +142,11 @@ def load_data(ticker, n_clicks):
     Input('weekly-data-store', 'data'),
     Input('year-dropdown', 'value'),
     Input('bucket-mode-store', 'data'),
+    Input('ticker-dropdown', 'value'),
     prevent_initial_call=False
 )
-def update_bucket_heatmap(raw_data_json, weekly_data_json, years, bucket_mode):
-    """Update the bucket heatmap based on selected years and mode (daily/weekly)."""
+def update_bucket_heatmap(raw_data_json, weekly_data_json, years, bucket_mode, ticker):
+    """Update the bucket heatmap based on selected years, mode (daily/weekly), and ticker."""
     # Handle multi-select years (convert to list if single value)
     if years is None:
         years = []
@@ -163,7 +164,7 @@ def update_bucket_heatmap(raw_data_json, weekly_data_json, years, bucket_mode):
         else:
             filtered_df = raw_df
         pivot_df = create_daily_buckets(filtered_df)
-        return create_bucket_heatmap(pivot_df, title_prefix="Daily")
+        return create_bucket_heatmap(pivot_df, title_prefix="Daily", ticker=ticker)
     else:
         if weekly_data_json is None:
             return {}
@@ -173,7 +174,7 @@ def update_bucket_heatmap(raw_data_json, weekly_data_json, years, bucket_mode):
         else:
             filtered_df = weekly_df
         pivot_df = create_weekly_buckets(filtered_df)
-        return create_bucket_heatmap(pivot_df, title_prefix="Weekly")
+        return create_bucket_heatmap(pivot_df, title_prefix="Weekly", ticker=ticker)
 
 
 @callback(
@@ -259,10 +260,11 @@ def update_details_panel(click_data, raw_data_json, weekly_data_json, bucket_mod
     Input('weekly-data-store', 'data'),
     Input('year-dropdown', 'value'),
     Input('view-mode-store', 'data'),
+    Input('ticker-dropdown', 'value'),
     prevent_initial_call=False
 )
-def update_52week_grid(weekly_data_json, years, view_mode):
-    """Update the 52-week grid based on selected years and view mode."""
+def update_52week_grid(weekly_data_json, years, view_mode, ticker):
+    """Update the 52-week grid based on selected years, view mode, and ticker."""
     if weekly_data_json is None:
         return html.Div("Loading data...", className="text-muted")
     
@@ -277,7 +279,7 @@ def update_52week_grid(weekly_data_json, years, view_mode):
     weekly_df['week_end'] = pd.to_datetime(weekly_df['week_end'])
     
     if view_mode == 'table':
-        return create_52week_table(weekly_df, year)
+        return create_52week_table(weekly_df, year, ticker)
     return create_52week_grid(weekly_df, year)
 
 
@@ -309,6 +311,25 @@ def toggle_bucket_mode(daily_clicks, weekly_clicks):
     if ctx.triggered_id == 'bucket-daily-btn':
         return False, True, 'daily'
     return True, False, 'weekly'
+
+
+@callback(
+    Output('year-dropdown', 'value'),
+    Input('year-select-all-btn', 'n_clicks'),
+    Input('year-select-none-btn', 'n_clicks'),
+    Input('year-select-last3-btn', 'n_clicks'),
+    prevent_initial_call=True
+)
+def quick_select_years(all_clicks, none_clicks, last3_clicks):
+    """Quick select buttons for year filter."""
+    all_years = list(range(2020, 2026))
+    if ctx.triggered_id == 'year-select-all-btn':
+        return all_years
+    elif ctx.triggered_id == 'year-select-none-btn':
+        return []
+    elif ctx.triggered_id == 'year-select-last3-btn':
+        return [2023, 2024, 2025]
+    return [2024]
 
 
 if __name__ == '__main__':
